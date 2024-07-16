@@ -80,7 +80,8 @@ class GasStationSystem(BaseSystem):
             if (contract not in self.credential.contracts.split(",") and self.credential.contracts) or\
                (t.service == "Пополнение баланса"):
                 continue
-            t.station, t.credential = self.get_station_by_station_name(station_name), self.credential
+            # я в конце обнаружил, что для каждого АЗС есть свой data-station-id, по которому за констанстное время мы может обратиться к нужной станции
+            t.station, t.credential = self.get_station_by_station_name(station_name), self.credential 
             transactions.append(t)
 
         return transactions
